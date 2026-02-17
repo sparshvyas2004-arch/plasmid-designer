@@ -5,12 +5,12 @@ from plasmid_utils import RESTRICTION_ENZYMES
 
 
 def test_plasmid(output_file):
-    print("Running tests on output plasmid...\n")
+    
     
     header, sequence = read_fasta(output_file)
     
     # Test 1: Size check
-    print("Test 1: Size validation")
+    
     size = len(sequence)
     if 2000 <= size <= 3000:
         print(f"  ✓ PASS: {size} bp (expected 2000-3000)")
@@ -18,7 +18,7 @@ def test_plasmid(output_file):
         print(f"  ✗ FAIL: {size} bp (expected 2000-3000)")
     
     # Test 2: EcoRI removal
-    print("\nTest 2: EcoRI site removal")
+   
     ecori_count = sequence.count('GAATTC')
     if ecori_count == 0:
         print(f"  ✓ PASS: No EcoRI sites found")
@@ -26,7 +26,7 @@ def test_plasmid(output_file):
         print(f"  ✗ FAIL: Found {ecori_count} EcoRI sites")
     
     # Test 3: Restriction sites
-    print("\nTest 3: Restriction sites presence")
+    
     expected_sites = ['BamHI', 'HindIII', 'PstI', 'SphI', 'SalI', 'XbaI', 'KpnI', 'SacI', 'SmaI']
     all_present = True
     for enzyme in expected_sites:
@@ -44,7 +44,7 @@ def test_plasmid(output_file):
         print("  ✗ FAIL: Some sites missing")
     
     # Test 4: Valid DNA
-    print("\nTest 4: DNA composition")
+    
     valid_bases = set('ATGC')
     sequence_bases = set(sequence)
     if sequence_bases.issubset(valid_bases):
